@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:parentTag="android.widget.LinearLayout">
 
-    <com.natife.example.customviewapp.custom.RectangleView
+    <com.natife.example.customviewapp.custom.RoundRectangleView
         android:id="@+id/rectangleView"
         android:layout_width="178dp"
         android:layout_height="154dp"
@@ -23,7 +23,7 @@
         app:rv_strokeColor="@color/gray"
         app:rv_strokeWidth="20" />
 
-    <com.natife.example.customviewapp.custom.RectangleView
+    <com.natife.example.customviewapp.custom.RoundRectangleView
         android:id="@+id/rectangleView2"
         android:layout_width="178dp"
         android:layout_height="154dp"
@@ -38,7 +38,7 @@
         app:rv_roundRadius="150"
         app:rv_strokeWidth="20" />
 
-    <com.natife.example.customviewapp.custom.RectangleView
+    <com.natife.example.customviewapp.custom.RoundRectangleView
         android:id="@+id/rectangleView3"
         android:layout_width="178dp"
         android:layout_height="154dp"
@@ -52,7 +52,7 @@
         app:rv_color="@color/purple_200"
         app:rv_roundRadius="20" />
 
-    <com.natife.example.customviewapp.custom.RectangleView
+    <com.natife.example.customviewapp.custom.RoundRectangleView
         android:layout_width="178dp"
         android:layout_height="154dp"
         android:layout_gravity="center"

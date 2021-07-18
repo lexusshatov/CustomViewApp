@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.natife.example.customviewapp.R
 
-class RectangleView(
+class RoundRectangleView(
     context: Context,
     attrs: AttributeSet? = null
 ) : @JvmOverloads View(context, attrs) {
@@ -44,13 +44,13 @@ class RectangleView(
     private val rect = RectF()
     private val paintFill = Paint().apply {
         isAntiAlias = true
-        color = this@RectangleView.color
+        color = this@RoundRectangleView.color
         style = Paint.Style.FILL
     }
     private val paintStroke = Paint().apply {
         isAntiAlias = true
         color = strokeColor
-        strokeWidth = this@RectangleView.strokeWidth
+        strokeWidth = this@RoundRectangleView.strokeWidth
         style = Paint.Style.STROKE
     }
 
