@@ -56,8 +56,8 @@ class RoundRectangleView(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = calculateDimension(widthMeasureSpec, Spec.WIDTH)
-        val height = calculateDimension(heightMeasureSpec, Spec.HEIGHT)
+        val width = calculateDimension(widthMeasureSpec, DEFAULT_WIDTH)
+        val height = calculateDimension(heightMeasureSpec, DEFAULT_HEIGHT)
         setMeasuredDimension(width, height)
     }
 
@@ -81,22 +81,17 @@ class RoundRectangleView(
         }
     }
 
-    private fun calculateDimension(measureSpec: Int, spec: Spec): Int {
-        val defaultSpec = when (spec) {
-            Spec.WIDTH -> DEFAULT_WIDTH
-            Spec.HEIGHT -> DEFAULT_HEIGHT
-        }
-        return when (MeasureSpec.getMode(measureSpec)) {
+    private fun calculateDimension(measureSpec: Int, defaultValue: Int) =
+        when (MeasureSpec.getMode(measureSpec)) {
             MeasureSpec.EXACTLY -> MeasureSpec.getSize(measureSpec)
             MeasureSpec.AT_MOST -> {
                 min(
                     MeasureSpec.getSize(measureSpec),
-                    defaultSpec
+                    defaultValue
                 )
             }
-            else -> defaultSpec
+            else -> defaultValue
         }
-    }
 
     companion object {
         private const val ROUND_RADIUS_DEFAULT = 0.0F
@@ -106,11 +101,6 @@ class RoundRectangleView(
 
         private const val DEFAULT_WIDTH = 100
         private const val DEFAULT_HEIGHT = 100
-    }
-
-    enum class Spec {
-        WIDTH,
-        HEIGHT
     }
 }
 
