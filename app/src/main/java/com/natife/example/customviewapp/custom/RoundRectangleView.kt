@@ -3,8 +3,11 @@ package com.natife.example.customviewapp.custom
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import com.natife.example.customviewapp.R
+import kotlin.math.max
+import kotlin.math.min
 
 class RoundRectangleView(
     context: Context,
@@ -54,14 +57,30 @@ class RoundRectangleView(
         style = Paint.Style.STROKE
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val width = when (MeasureSpec.getMode(widthMeasureSpec)) {
+            MeasureSpec.EXACTLY -> {
+                MeasureSpec.getSize(widthMeasureSpec)
+            }
+            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(widthMeasureSpec), wrap_width)
+            else -> wrap_width
+        }
+        val height = when (MeasureSpec.getMode(heightMeasureSpec)) {
+            MeasureSpec.EXACTLY -> MeasureSpec.getSize(heightMeasureSpec)
+            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(heightMeasureSpec), wrap_height)
+            else -> wrap_height
+        }
+        setMeasuredDimension(width, height)
+    }
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         val strokeRadius = strokeWidth / 2
         rect.set(
             0.0f + strokeRadius,
             0.0f + strokeRadius,
-            width.toFloat() - strokeRadius,
-            height.toFloat() - strokeRadius
+            measuredWidth.toFloat() - strokeRadius,
+            measuredHeight.toFloat() - strokeRadius
         )
     }
 
@@ -79,5 +98,8 @@ class RoundRectangleView(
         private const val STROKE_WIDTH_DEFAULT = 0.0F
         private const val STROKE_COLOR_DEFAULT = Color.BLACK
         private const val COLOR_DEFAULT = Color.WHITE
+
+        private const val wrap_width = 100
+        private const val wrap_height = 100
     }
 }

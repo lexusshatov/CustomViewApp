@@ -53,8 +53,8 @@
         app:rv_roundRadius="20" />
 
     <com.natife.example.customviewapp.custom.RoundRectangleView
-        android:layout_width="178dp"
-        android:layout_height="154dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,9 +62,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rectangleView2"
         app:layout_constraintVertical_bias="0.066"
-        app:rv_strokeWidth="100"
+        app:rv_roundRadius="10"
         app:rv_strokeColor="@color/red"
-        app:rv_roundRadius="20" />
+        app:rv_strokeWidth="15" />
 
     <Button
         android:id="@+id/button"
