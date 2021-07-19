@@ -3,10 +3,8 @@ package com.natife.example.customviewapp.custom
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import com.natife.example.customviewapp.R
-import kotlin.math.max
 import kotlin.math.min
 
 class RoundRectangleView(
@@ -59,9 +57,7 @@ class RoundRectangleView(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = when (MeasureSpec.getMode(widthMeasureSpec)) {
-            MeasureSpec.EXACTLY -> {
-                MeasureSpec.getSize(widthMeasureSpec)
-            }
+            MeasureSpec.EXACTLY -> MeasureSpec.getSize(widthMeasureSpec)
             MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(widthMeasureSpec), wrap_width)
             else -> wrap_width
         }
