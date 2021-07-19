@@ -58,13 +58,13 @@ class RoundRectangleView(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = when (MeasureSpec.getMode(widthMeasureSpec)) {
             MeasureSpec.EXACTLY -> MeasureSpec.getSize(widthMeasureSpec)
-            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(widthMeasureSpec), wrap_width)
-            else -> wrap_width
+            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(widthMeasureSpec), default_width)
+            else -> default_width
         }
         val height = when (MeasureSpec.getMode(heightMeasureSpec)) {
             MeasureSpec.EXACTLY -> MeasureSpec.getSize(heightMeasureSpec)
-            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(heightMeasureSpec), wrap_height)
-            else -> wrap_height
+            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(heightMeasureSpec), default_height)
+            else -> default_height
         }
         setMeasuredDimension(width, height)
     }
@@ -95,7 +95,7 @@ class RoundRectangleView(
         private const val STROKE_COLOR_DEFAULT = Color.BLACK
         private const val COLOR_DEFAULT = Color.WHITE
 
-        private const val wrap_width = 100
-        private const val wrap_height = 100
+        private const val default_width = 100
+        private const val default_height = 100
     }
 }
