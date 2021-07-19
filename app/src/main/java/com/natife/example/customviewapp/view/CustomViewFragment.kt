@@ -32,7 +32,6 @@ class CustomViewFragment private constructor(): Fragment() {
     }
 
     companion object {
-        @JvmStatic
         fun newInstance() = CustomViewFragment()
     }
 }

@@ -28,7 +28,6 @@ class CustomLayoutFragment private constructor(): Fragment() {
     }
 
     companion object {
-        @JvmStatic
         fun newInstance() = CustomLayoutFragment()
     }
 }

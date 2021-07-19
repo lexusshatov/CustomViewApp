@@ -56,16 +56,8 @@ class RoundRectangleView(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = when (MeasureSpec.getMode(widthMeasureSpec)) {
-            MeasureSpec.EXACTLY -> MeasureSpec.getSize(widthMeasureSpec)
-            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(widthMeasureSpec), default_width)
-            else -> default_width
-        }
-        val height = when (MeasureSpec.getMode(heightMeasureSpec)) {
-            MeasureSpec.EXACTLY -> MeasureSpec.getSize(heightMeasureSpec)
-            MeasureSpec.AT_MOST -> min(MeasureSpec.getSize(heightMeasureSpec), default_height)
-            else -> default_height
-        }
+        val width = calculateDimension(widthMeasureSpec, Spec.WIDTH)
+        val height = calculateDimension(heightMeasureSpec, Spec.HEIGHT)
         setMeasuredDimension(width, height)
     }
 
@@ -73,8 +65,8 @@ class RoundRectangleView(
         super.onLayout(changed, left, top, right, bottom)
         val strokeRadius = strokeWidth / 2
         rect.set(
-            0.0f + strokeRadius,
-            0.0f + strokeRadius,
+            strokeRadius,
+            strokeRadius,
             measuredWidth.toFloat() - strokeRadius,
             measuredHeight.toFloat() - strokeRadius
         )
@@ -89,13 +81,36 @@ class RoundRectangleView(
         }
     }
 
+    private fun calculateDimension(measureSpec: Int, spec: Spec): Int {
+        val defaultSpec = when (spec) {
+            Spec.WIDTH -> DEFAULT_WIDTH
+            Spec.HEIGHT -> DEFAULT_HEIGHT
+        }
+        return when (MeasureSpec.getMode(measureSpec)) {
+            MeasureSpec.EXACTLY -> MeasureSpec.getSize(measureSpec)
+            MeasureSpec.AT_MOST -> {
+                min(
+                    MeasureSpec.getSize(measureSpec),
+                    defaultSpec
+                )
+            }
+            else -> defaultSpec
+        }
+    }
+
     companion object {
         private const val ROUND_RADIUS_DEFAULT = 0.0F
         private const val STROKE_WIDTH_DEFAULT = 0.0F
         private const val STROKE_COLOR_DEFAULT = Color.BLACK
         private const val COLOR_DEFAULT = Color.WHITE
 
-        private const val default_width = 100
-        private const val default_height = 100
+        private const val DEFAULT_WIDTH = 100
+        private const val DEFAULT_HEIGHT = 100
+    }
+
+    enum class Spec {
+        WIDTH,
+        HEIGHT
     }
 }
+
