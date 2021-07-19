@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.setPadding
 
-class CustomLinearLayout(
+class VerticalLinearLayout(
     context: Context,
     attrs: AttributeSet? = null
 ): @JvmOverloads ViewGroup(context, attrs) {
@@ -44,9 +44,9 @@ class CustomLinearLayout(
     fun addItem(item: String) {
         val textView = TextView(context).apply {
             text = item
-            textSize = this@CustomLinearLayout.textSize
-            setTextColor(this@CustomLinearLayout.textColor)
-            setBackgroundColor(this@CustomLinearLayout.background)
+            textSize = this@VerticalLinearLayout.textSize
+            setTextColor(this@VerticalLinearLayout.textColor)
+            setBackgroundColor(this@VerticalLinearLayout.background)
             setPadding(padding)
             layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT)
         }
